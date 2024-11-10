@@ -56,7 +56,9 @@ function App() {
     <>
       <form className="header" onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="category">Category</label>
+          <label htmlFor="category" className="category">
+            Category
+          </label>
           <select id="category" ref={categoryEl}>
             {categories.map((category) => {
               return (
@@ -68,7 +70,9 @@ function App() {
           </select>
         </div>
         <div className="form-group">
-          <label htmlFor="amount">Number of Questions</label>
+          <label htmlFor="amount" className="number">
+            Number of Questions
+          </label>
           <input
             type="number"
             id="amount"
