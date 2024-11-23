@@ -6,6 +6,7 @@ import axios from "axios";
 function App() {
   const [flashcards, setFlashcards] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [correctCount, setCorrectCount] = useState(0);
 
   const categoryEl = useRef();
   const amountEl = useRef();
@@ -15,8 +16,6 @@ function App() {
       setCategories(res.data.trivia_categories);
     });
   }, []);
-
-  useEffect(() => {}, []);
 
   function decodeString(str) {
     const textArea = document.createElement("textarea");
@@ -51,6 +50,12 @@ function App() {
         );
       });
   }
+
+  const handleAnswer = (isCorrect) => {
+    if (isCorrect) {
+      setCorrectCount((prevCount) => prevCount + 1);
+    }
+  };
 
   return (
     <>
@@ -87,7 +92,8 @@ function App() {
         </div>
       </form>
       <div className="container">
-        <FlashcardList flashcards={flashcards} />
+        <h2>Correct Answers: {correctCount} </h2>
+        <FlashcardList flashcards={flashcards} handleAnswer={handleAnswer} />
       </div>
     </>
   );
